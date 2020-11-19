@@ -11,11 +11,24 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="6dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/background_drawing_layout"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/ibBrush"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        />
+    <ImageButton
+        android:id="@+id/ibBrush"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/brush_icon"
+        android:contentDescription="brush_image"
+        android:scaleType="fitXY"
+        android:layout_margin="6dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
