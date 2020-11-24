@@ -52,6 +52,9 @@ class MainActivity : AppCompatActivity() {
                 requestStoragePermission()
             }
         }
+        ibUndo.setOnClickListener {
+            drawingView.onClickUndo()
+        }
     }
 
 

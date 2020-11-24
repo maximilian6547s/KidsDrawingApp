@@ -144,7 +144,7 @@
             android:layout_margin="6dp"
             android:contentDescription="undo_image"
             android:scaleType="fitXY"
-            android:src="@drawable/ic_gallery" />
+            android:src="@drawable/ic_undo" />
 
         <ImageButton
             android:id="@+id/ibGallery"
