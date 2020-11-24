@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity() {
                     R.drawable.pallete_pressed
                 )
             )
-            mImageButtonCurrentPaint?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.pallete_normal))
+            mImageButtonCurrentPaint?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.palette_normal))
             mImageButtonCurrentPaint = view
         }
     }

@@ -20,11 +20,11 @@
 
         <ImageView
             android:id="@+id/ivBackground"
-            android:scaleType="centerCrop"
-            android:contentDescription="background_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/image"/>
+            android:contentDescription="background_image"
+            android:scaleType="centerCrop"
+            android:src="@drawable/image" />
 
         <com.maximcuker.kidsdrawingapp.DrawingView
             android:id="@+id/drawingView"
@@ -41,7 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@id/ibBrush"
+        app:layout_constraintBottom_toTopOf="@id/llActionButtons"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/flDrawingViewContainer">
@@ -53,7 +53,7 @@
             android:background="@color/skin"
             android:contentDescription="colorPalette"
             android:onClick="paintClicked"
-            android:src="@drawable/pallete_normal"
+            android:src="@drawable/palette_normal"
             android:tag="@color/skin" />
 
         <ImageButton
@@ -63,7 +63,7 @@
             android:background="@color/black"
             android:contentDescription="colorPalette"
             android:onClick="paintClicked"
-            android:src="@drawable/pallete_normal"
+            android:src="@drawable/palette_normal"
             android:tag="@color/black" />
 
         <ImageButton
@@ -73,7 +73,7 @@
             android:background="@color/red"
             android:contentDescription="colorPalette"
             android:onClick="paintClicked"
-            android:src="@drawable/pallete_normal"
+            android:src="@drawable/palette_normal"
             android:tag="@color/red" />
 
         <ImageButton
@@ -83,7 +83,7 @@
             android:background="@color/green"
             android:contentDescription="colorPalette"
             android:onClick="paintClicked"
-            android:src="@drawable/pallete_normal"
+            android:src="@drawable/palette_normal"
             android:tag="@color/green" />
 
         <ImageButton
@@ -93,7 +93,7 @@
             android:background="@color/blue"
             android:contentDescription="colorPalette"
             android:onClick="paintClicked"
-            android:src="@drawable/pallete_normal"
+            android:src="@drawable/palette_normal"
             android:tag="@color/blue" />
 
         <ImageButton
@@ -103,7 +103,7 @@
             android:background="@color/yellow"
             android:contentDescription="colorPalette"
             android:onClick="paintClicked"
-            android:src="@drawable/pallete_normal"
+            android:src="@drawable/palette_normal"
             android:tag="@color/yellow" />
 
         <ImageButton
@@ -113,7 +113,7 @@
             android:background="@color/lollipop"
             android:contentDescription="colorPalette"
             android:onClick="paintClicked"
-            android:src="@drawable/pallete_normal"
+            android:src="@drawable/palette_normal"
             android:tag="@color/lollipop" />
 
         <ImageButton
@@ -123,21 +123,40 @@
             android:background="@color/random"
             android:contentDescription="colorPalette"
             android:onClick="paintClicked"
-            android:src="@drawable/pallete_normal"
+            android:src="@drawable/palette_normal"
             android:tag="@color/random" />
 
     </LinearLayout>
 
-    <ImageButton
-        android:id="@+id/ibBrush"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_margin="6dp"
-        android:contentDescription="brush_image"
-        android:scaleType="fitXY"
-        android:src="@drawable/brush_icon"
+    <LinearLayout
+        android:id="@+id/llActionButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent">
+
+        <ImageButton
+            android:id="@+id/ibGallery"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="6dp"
+            android:contentDescription="gallery_image"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_gallery" />
+
+        <ImageButton
+            android:id="@+id/ibBrush"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="6dp"
+            android:contentDescription="brush_image"
+            android:scaleType="fitXY"
+            android:src="@drawable/brush_icon" />
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
