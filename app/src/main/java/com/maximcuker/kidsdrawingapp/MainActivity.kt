@@ -8,6 +8,7 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
+import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
@@ -19,6 +20,9 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.get
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.dialog_brush_size.*
+import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.FileOutputStream
 import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
@@ -59,7 +63,13 @@ class MainActivity : AppCompatActivity() {
             drawingView.onClickUndo()
         }
 
-        ibSave.setOnClickListener {  }
+        ibSave.setOnClickListener {
+            if(isReadStorageAllowed()) {
+                BitmapAsyncTask(getBitmapFromView(flDrawingViewContainer)).execute()
+            } else {
+                requestStoragePermission()
+            }
+        }
     }
 
 
@@ -163,6 +173,48 @@ class MainActivity : AppCompatActivity() {
         return returnedBitmap
     }
 
+    private inner class BitmapAsyncTask(val mBitmap:Bitmap): AsyncTask<Any, Void, String>() {
+
+        override fun onPreExecute() {
+            super.onPreExecute()
+        }
+
+        override fun doInBackground(vararg params: Any?): String {
+            var result = ""
+            if (mBitmap !=null) {
+                try {
+                    val bytes = ByteArrayOutputStream()
+                    mBitmap.compress(Bitmap.CompressFormat.PNG,90, bytes)
+                    val f = File(externalCacheDir?.absoluteFile.toString() + File.separator + "KiddrawingApp_" + System.currentTimeMillis()/1000 + ".png")
+                    val fos = FileOutputStream(f)
+                    fos.write(bytes.toByteArray())
+                    fos.close()
+                    result = f.absolutePath
+                } catch (e:Exception) {
+                    result = ""
+                    e.printStackTrace()
+                }
+            }
+            return result
+        }
+
+        override fun onPostExecute(result: String?) {
+            super.onPostExecute(result)
+            if (result?.isEmpty() == false) {
+                Toast.makeText(
+                    this@MainActivity,
+                    "File saved successfully :$result",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                Toast.makeText(
+                    this@MainActivity,
+                    "Something went wrong while saving the file.",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
     companion object{
         private const val STORAGE_PERMISSION_CODE = 1
         private const val GALLERY = 2
