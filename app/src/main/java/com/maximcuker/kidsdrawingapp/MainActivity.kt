@@ -175,8 +175,11 @@ class MainActivity : AppCompatActivity() {
 
     private inner class BitmapAsyncTask(val mBitmap:Bitmap): AsyncTask<Any, Void, String>() {
 
+        private lateinit var mProgressDialog: Dialog
+
         override fun onPreExecute() {
             super.onPreExecute()
+            showProgressDialog()
         }
 
         override fun doInBackground(vararg params: Any?): String {
@@ -200,6 +203,7 @@ class MainActivity : AppCompatActivity() {
 
         override fun onPostExecute(result: String?) {
             super.onPostExecute(result)
+            cancelProgressDialog()
             if (result?.isEmpty() == false) {
                 Toast.makeText(
                     this@MainActivity,
@@ -214,6 +218,18 @@ class MainActivity : AppCompatActivity() {
                 ).show()
             }
         }
+
+        private fun showProgressDialog() {
+            mProgressDialog = Dialog(this@MainActivity)
+            mProgressDialog.setContentView(R.layout.dialog_custom_progress)
+            mProgressDialog.show()
+        }
+
+        private fun cancelProgressDialog() {
+            mProgressDialog.dismiss()
+        }
+
+
     }
     companion object{
         private const val STORAGE_PERMISSION_CODE = 1
